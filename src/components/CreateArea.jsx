@@ -8,6 +8,7 @@ function CreateArea(props) {
     title: "",
     note: ""
   });
+  const [isClicked, setIsClicked] = useState(false);
   function handleChange(event) {
     const { name, value } = event.target;
     setNote((prev) => {
@@ -16,6 +17,9 @@ function CreateArea(props) {
         [name]: value
       };
     });
+  }
+  function handleExpand(event){
+    setIsClicked(true)
   }
   return (
     <div>
@@ -27,6 +31,7 @@ function CreateArea(props) {
         }}
       >
         <input
+          onClick={handleExpand}
           onChange={handleChange}
           name="title"
           placeholder="Title"
@@ -36,12 +41,13 @@ function CreateArea(props) {
           onChange={handleChange}
           name="note"
           placeholder="Take a note..."
-          rows="3"
+          rows={isClicked? 3:1}
           value={note.note}
         />
-        <Zoom in={true}>
+        <Zoom in={isClicked}>
           <Fab
             onClick={() => {
+              setIsClicked(false);
               props.onAdd(note);
               setNote(() => {
                 return {
