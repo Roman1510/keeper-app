@@ -29,6 +29,9 @@ function CreateArea(props) {
         onSubmit={(e) => {
           e.preventDefault();
         }}
+        onMouseLeave={()=>{
+              setIsClicked(false)
+        }}
       >
         <input
           onClick={handleExpand}
@@ -38,6 +41,7 @@ function CreateArea(props) {
           value={note.title}
         />
         <textarea
+          onClick={handleExpand}
           onChange={handleChange}
           name="note"
           placeholder="Take a note..."
