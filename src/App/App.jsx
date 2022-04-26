@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Note from '@/components/Note'
@@ -25,7 +25,7 @@ function App() {
     })
   }
   return (
-    <div>
+    <>
       <Header />
       <CreateArea onAdd={onAdd} />
       {arr.map((e, i) => {
@@ -40,7 +40,7 @@ function App() {
         )
       })}
       <Footer />
-    </div>
+    </>
   )
 }
 

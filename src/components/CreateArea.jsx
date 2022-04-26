@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import { Fab } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import Zoom from "@material-ui/core/Zoom";
+import { useState } from 'react'
+import { Fab } from '@material-ui/core'
+import AddIcon from '@material-ui/icons/Add'
+import Zoom from '@material-ui/core/Zoom'
 
 function CreateArea(props) {
   const [note, setNote] = useState({
-    title: "",
-    note: ""
-  });
-  const [isClicked, setIsClicked] = useState(false);
+    title: '',
+    note: '',
+  })
+  const [isClicked, setIsClicked] = useState(false)
   function handleChange(event) {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     setNote((prev) => {
       return {
         ...prev,
-        [name]: value
-      };
-    });
+        [name]: value,
+      }
+    })
   }
-  function handleExpand(event){
+  function handleExpand() {
     setIsClicked(true)
   }
   return (
@@ -27,10 +27,10 @@ function CreateArea(props) {
         className="create-note"
         autoComplete="off"
         onSubmit={(e) => {
-          e.preventDefault();
+          e.preventDefault()
         }}
-        onMouseLeave={()=>{
-              setIsClicked(false)
+        onMouseLeave={() => {
+          setIsClicked(false)
         }}
       >
         <input
@@ -45,20 +45,20 @@ function CreateArea(props) {
           onChange={handleChange}
           name="note"
           placeholder="Take a note..."
-          rows={isClicked? 3:1}
+          rows={isClicked ? 3 : 1}
           value={note.note}
         />
         <Zoom in={isClicked}>
           <Fab
             onClick={() => {
-              setIsClicked(false);
-              props.onAdd(note);
+              setIsClicked(false)
+              props.onAdd(note)
               setNote(() => {
                 return {
-                  title: "",
-                  note: ""
-                };
-              });
+                  title: '',
+                  note: '',
+                }
+              })
             }}
           >
             <AddIcon />
@@ -66,7 +66,7 @@ function CreateArea(props) {
         </Zoom>
       </form>
     </div>
-  );
+  )
 }
 
-export default CreateArea;
+export default CreateArea
